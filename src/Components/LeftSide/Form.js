@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-
-import styled from "styled-components";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
+import useForm from "react-hook-form";
 
 import { makeStyles } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
 import Header from "./Header";
+import FirstStep from "./FirstStep";
+import SecondStep from "./SecondStep";
+import ThirdStep from "./ThirdStep";
+import ThanksNote from "./ThanksNote";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -24,70 +19,19 @@ const useStyles = makeStyles(() => ({
   form: {
     // border: "1px solid black",
     width: "70%",
+    height: "auto",
     display: "flex",
     justifyContent: "center",
     alignItems: "flex-start",
     flexDirection: "column",
     marginTop: 20
-  },
-  inputs: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column"
-  },
-  formItem: {
-    // border: "1px solid black",
-    marginTop: 10,
-    marginBottom: 10
-  },
-  btnFirstPage: {
-    alignSelf: "flex-end",
-    marginTop: 30
-  },
-  btnSecondPage: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 30
-  },
-  btnThirdPage: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 30,
-    width: "100%"
-  },
-  table: {
-    width: "400px"
   }
 }));
 
-const StyledTextField = styled(TextField)`
-  .MuiInputBase-input {
-    width: 300px;
-  }
-  label.focused {
-    color: rgba(255, 146, 10, 1);
-  }
-  .MuiOutlinedInput-root {
-    fieldset {
-      border-color: inherit;
-    }
-    &:hover fieldset {
-      border-color: yellow;
-    }
-    &.Mui-focused fieldset {
-      border-color: rgba(255, 146, 10, 1);
-    }
-  }
-  .MuiFormLabel-root.Mui-focused {
-    color: rgba(255, 146, 10, 1);
-  }
-`;
-
 const Form = () => {
   const classes = useStyles();
+  const { register, handleSubmit, setValue, getValues, errors, } = useForm();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -95,10 +39,11 @@ const Form = () => {
     conPassword: "",
     cardName: "",
     cardNumber: "",
-    cardDate: "",
+    cardMonth: "",
+    cardYear: "",
     cardCode: ""
   });
-  const [index, setIndex] = useState(3);
+  const [index, setIndex] = useState(1);
 
   const nextPage = () => {
     setIndex(index + 1);
@@ -108,164 +53,57 @@ const Form = () => {
     setIndex(index - 1);
   };
 
-  const handleChange = event => {
-    // setForm({ event.target.name : event.target.value });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log()
+    if (errors) {
+      console.log("send");
+      nextPage();
+    } else {
+      alert("Check your data", errors)
+    }
+
+    // alert(JSON.stringify(data));
+
   };
 
-  const handleSubmit = () => {
-    console.log("send");
+  const pullValues = () => {
+    const values = getValues();
+    setForm(values);
   };
 
   return (
     <Container maxWidth={"sm"}>
       <section className={classes.container}>
         <Header index={index} />
-        <form onSubmit={handleSubmit} className={classes.form}>
+        <form id="signForm" onSubmit={onSubmit} className={classes.form}>
           {index === 1 && (
-            <div className={classes.inputs}>
-              <FormControl>
-                <div className={classes.formItem}>
-                  <StyledTextField
-                    id="input-with-icon-grid"
-                    variant="outlined"
-                    label="Full Name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    type="text"
-                  />
-                </div>
-                <div className={classes.formItem}>
-                  <StyledTextField
-                    id="input-with-icon-grid"
-                    variant="outlined"
-                    label="Email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    type="email"
-                  />
-                </div>
-                <div className={classes.formItem}>
-                  <StyledTextField
-                    id="input-with-icon-grid"
-                    variant="outlined"
-                    label="Password"
-                    value={form.password}
-                  />
-                </div>
-                <div className={classes.formItem}>
-                  <StyledTextField
-                    id="input-with-icon-grid"
-                    variant="outlined"
-                    label="Confirm Password"
-                    value={form.conPassword}
-                  />
-                </div>
-              </FormControl>
-              <Button
-                className={classes.btnFirstPage}
-                onClick={nextPage}
-                variant="contained"
-                primary
-              >
-                Next Page
-              </Button>
-            </div>
+            <FirstStep
+              nextPage={nextPage}
+              setValue={setValue}
+              register={register}
+              form={form}
+            />
           )}
           {index === 2 && (
-            <div>
-              <div className={classes.inputs}>
-                <div className={classes.formItem}>
-                  <StyledTextField
-                    variant="outlined"
-                    id="input-with-icon-grid"
-                    label="Name on card"
-                    value={form.cardName}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className={classes.formItem}>
-                  <StyledTextField
-                    variant="outlined"
-                    id="input-with-icon-grid"
-                    label="Card number"
-                    value={form.cardNumber}
-                  />
-                </div>
-                <div className={classes.formItem}>
-                  <StyledTextField
-                    variant="outlined"
-                    id="input-with-icon-grid"
-                    label="Expiry date"
-                    value={form.cardDate}
-                  />
-                </div>
-                <div className={classes.formItem}>
-                  <StyledTextField
-                    variant="outlined"
-                    id="input-with-icon-grid"
-                    label="Security code"
-                    value={form.cardCode}
-                  />
-                </div>
-              </div>
-              <div className={classes.btnSecondPage}>
-                <Button onClick={prevPage} variant="contained">
-                  Previous Page
-                </Button>
-                <Button onClick={nextPage} variant="contained" primary>
-                  Next Page
-                </Button>{" "}
-              </div>
-            </div>
+            <SecondStep
+              nextPage={nextPage}
+              prevPage={prevPage}
+              pullValues={pullValues}
+              errors={errors}
+              setValue={setValue}
+              register={register}
+              form={form}
+            />
           )}
           {index === 3 && (
-            <div className={classes.inputs}>
-              <Table className={classes.table} aria-label="summary table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center" colSpan={2}>
-                      Summary
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>Full name:</TableCell>
-                    <TableCell>fdsfdsaadf</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Email:</TableCell>
-                    <TableCell></TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Name on card:</TableCell>
-                    <TableCell></TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Credit card number:</TableCell>
-                    <TableCell></TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Expiry date:</TableCell>
-                    <TableCell></TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Security code:</TableCell>
-                    <TableCell></TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-              <div className={classes.btnThirdPage}>
-                <Button onClick={prevPage} variant="contained">
-                  Previous Page
-                </Button>
-                <Button type="submit" variant="contained">
-                  Send
-                </Button>{" "}
-              </div>
-            </div>
+            <ThirdStep
+              prevPage={prevPage}
+              form={form}
+            />
+          )}
+          { index ===4 && (
+              <ThanksNote name={form.name}/>
           )}
         </form>
       </section>

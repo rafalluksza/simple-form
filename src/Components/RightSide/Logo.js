@@ -10,8 +10,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    width: "25%",
-    height: "25%",
+    width: "180px",
+    height: "180px",
     borderRadius: "20%"
   },
   icon: {

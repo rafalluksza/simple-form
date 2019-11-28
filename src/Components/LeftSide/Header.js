@@ -33,6 +33,7 @@ const Header = ({ index }) => {
         {index === 1 && <span> Personal Details </span>}
         {index === 2 && <span> Credit Card Data </span>}
         {index === 3 && <span> Summary </span>}
+        {index === 4 && <span> Thank you! </span>}
       </div>
 
       <div className={classes.content}>

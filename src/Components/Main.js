@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   background: {
     backgroundImage: `url(${background})`,
     width: "100vw",
-    height: "100vh",
+    minHeight: "100vh",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     display: "flex",

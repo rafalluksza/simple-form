@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     backgroundImage: `url(${background})`,
     width: "100%",
     height: "100%",
+    minHeight: "630px",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center",
