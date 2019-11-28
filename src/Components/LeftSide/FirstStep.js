@@ -7,7 +7,6 @@ import { COLOR_SECONDARY, COLOR_TEXT } from "../../Constants/colors";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 
-
 const StyledTextField = styled(TextField)`
   .MuiInputBase-input {
     width: 300px;
@@ -30,7 +29,6 @@ const StyledTextField = styled(TextField)`
     color: rgba(255, 146, 10, 1);
   }
 `;
-
 
 const useStyles = makeStyles(() => ({
   inputs: {
@@ -55,7 +53,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const FirstStep = ({form, register, setValue, nextPage}) => {
+const FirstStep = ({ form, nextPage, handleChange, setValue, register }) => {
   const classes = useStyles();
   return (
     <div className={classes.inputs}>
@@ -71,9 +69,10 @@ const FirstStep = ({form, register, setValue, nextPage}) => {
                 label="Full name"
                 name="name"
                 type="text"
-                value={form.name}
               />
             }
+            value={form.name}
+            onChange={handleChange}
             setValue={setValue}
           />
         </div>
@@ -81,7 +80,12 @@ const FirstStep = ({form, register, setValue, nextPage}) => {
           <RHFInput
             register={register}
             as={
-              <StyledTextField variant="outlined" label="Email" type="email" />
+              <StyledTextField
+                variant="outlined"
+                label="Email"
+                type="email"
+                name="email"
+              />
             }
             id="email"
             name="email"
@@ -91,6 +95,7 @@ const FirstStep = ({form, register, setValue, nextPage}) => {
               required: true,
               minLength: 5
             }}
+            onChange={handleChange}
           />
         </div>
         <div className={classes.formItem}>
@@ -101,13 +106,15 @@ const FirstStep = ({form, register, setValue, nextPage}) => {
                 variant="outlined"
                 label="Password"
                 type="password"
+                name="password"
               />
             }
             id="password"
             name="password"
-            value={form.password}
             setValue={setValue}
+            value={form.password}
             rules={{ required: true }}
+            onChange={handleChange}
           />
         </div>
         <div className={classes.formItem}>
@@ -118,21 +125,26 @@ const FirstStep = ({form, register, setValue, nextPage}) => {
                 variant="outlined"
                 label="Confirm Password"
                 type="password"
+                name="conPassword"
               />
             }
             id="conPassword"
             name="conPassword"
             value={form.conPassword}
+            onChange={handleChange}
             setValue={setValue}
             rules={{
-              required: true
+              required: true,
+              validate: value => value === form.password
             }}
           />
         </div>
       </FormControl>
       <Button
         className={classes.btnFirstPage}
-        onClick={nextPage}
+        onClick={() => {
+          nextPage();
+        }}
         variant="contained"
       >
         Next Page

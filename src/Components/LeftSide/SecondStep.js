@@ -69,17 +69,9 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-
-const SecondStep = ({
-  form,
-  register,
-  setValue,
-  nextPage,
-  prevPage,
-  pullValues,
-  errors
-}) => {
+const SecondStep = ({ form, nextPage, prevPage, handleChange, register, setValue }) => {
   const classes = useStyles();
+
   return (
     <div>
       <div className={classes.inputs}>
@@ -91,13 +83,15 @@ const SecondStep = ({
                 variant="outlined"
                 label="Name on card"
                 type="text"
+                name="cardName"
               />
             }
             id="cardName"
             name="cardName"
             value={form.cardName}
-            setValue={setValue}
+            onChange={handleChange}
             rules={{ required: true }}
+            setValue={setValue}
           />
         </div>
         <div className={classes.formItem}>
@@ -108,11 +102,13 @@ const SecondStep = ({
                 variant="outlined"
                 label="Card number"
                 type="number"
+                name="cardNumber"
               />
             }
             id="cardNumber"
             name="cardNumber"
             value={form.cardNumber}
+            onChange={handleChange}
             setValue={setValue}
             rules={{
               required: true,
@@ -130,12 +126,14 @@ const SecondStep = ({
                   variant="outlined"
                   label="Exp month"
                   type="number"
+                  name="cardMonth"
                 />
               }
               variant="outlined"
               id="cardMonth"
               name="cardMonth"
               setValue={setValue}
+              onChange={handleChange}
               value={form.cardMonth}
               rules={{ required: true, min: 1, max: 12 }}
             />
@@ -146,12 +144,13 @@ const SecondStep = ({
                   variant="outlined"
                   label="Exp year"
                   type="number"
+                  name="cardYear"
                 />
               }
               variant="outlined"
               id="cardYear"
               name="cardYear"
-              setValue={setValue}
+              onChange={handleChange}
               value={form.cardYear}
               rules={{
                 required: true,
@@ -160,6 +159,7 @@ const SecondStep = ({
                 minLength: 4,
                 maxLength: 4
               }}
+              setValue={setValue}
             />
           </div>
         </div>
@@ -171,15 +171,17 @@ const SecondStep = ({
                 variant="outlined"
                 label="Security code"
                 type="number"
+                name="cardCode"
               />
             }
             id="cardCode"
             name="cardCode"
-            setValue={setValue}
             value={form.cardCode}
+            onChange={handleChange}
             rules={{ required: true, maxLength: 3, minLength: 3 }}
+            setValue={setValue}
           />
-          {errors.cardCode && <div> Only 3 digits! </div>}
+          {/*{errors.cardCode && <div> Only 3 digits! </div>}*/}
         </div>
       </div>
       <div className={classes.btnSecondPage}>
@@ -189,7 +191,6 @@ const SecondStep = ({
         <Button
           onClick={() => {
             nextPage();
-            pullValues();
           }}
           variant="contained"
           className={classes.btnNextPage}

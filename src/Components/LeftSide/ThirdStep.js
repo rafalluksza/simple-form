@@ -54,7 +54,7 @@ const ThirdStep = ({ form, prevPage }) => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell size="small">Full name:</TableCell>
+            <TableCell size="small" >Full name:</TableCell>
             <TableCell size="small">{form.name}</TableCell>
           </TableRow>
           <TableRow>
