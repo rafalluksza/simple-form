@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     flexDirection: "column",
     width: "65%",
-    height: "25%"
+    height: "30%"
     // border: "1px solid white"
   },
   text: {
@@ -32,9 +32,23 @@ const useStyles = makeStyles(() => ({
     left: -50,
     top: -15
   },
+  quote: { fontSize: 16 },
+
   radioGroup: {
     flexDirection: "row"
-  }
+  },
+  signature: {
+    position: "absolute",
+    bottom: 0,
+    fontSize: 20
+  },
+  line: {
+    borderTop: "3px solid rgba(255,146,10,1)",
+    width: 100,
+    height: 8,
+    display: "inline-block"
+  },
+  boss: {}
 }));
 
 const Note = () => {
@@ -52,25 +66,37 @@ const Note = () => {
           <FormatQuote style={{ fontSize: "50px" }} />
         </div>
         {index === "1" && (
-          <div>
+          <div className={classes.quote}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec
             orci metus. Morbi lacinia, neque et efficitur dignissim, ligula
             nisl.
+            <div className={classes.signature}>
+              <div className={classes.line} />{" "}
+              <strong className={classes.boss}>Jive Sobs </strong>
+            </div>
           </div>
         )}
         {index === "2" && (
-          <div>
+          <div className={classes.quote}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             bibendum erat a diam condimentum, sed ornare lectus lobortis.
             Integer tempus libero est, eget aliquet massa.
+            <div className={classes.signature}>
+              <div className={classes.line} />{" "}
+              <strong className={classes.boss}>Beff Jezzos</strong>
+            </div>
           </div>
         )}
         {index === "3" && (
-          <div>
+          <div className={classes.quote}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu
             placerat felis. Suspendisse aliquam hendrerit eros. Sed aliquam
             metus tortor, eu tristique mauris posuere nec. Nulla mollis
             fermentum fringilla.
+            <div className={classes.signature}>
+              <div className={classes.line} />{" "}
+              <strong className={classes.boss}>Gill Bates </strong>
+            </div>
           </div>
         )}
       </div>
