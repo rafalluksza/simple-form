@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTransition, animated } from "react-spring";
 import useForm from "react-hook-form";
 
 import { makeStyles } from "@material-ui/core";
@@ -8,6 +9,7 @@ import FirstStep from "./FirstStep";
 import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
 import ThanksNote from "./ThanksNote";
+import WrapperForSteps from "./WrapperForSteps";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -22,7 +24,8 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    marginTop: 20
+    marginTop: 20,
+    position: "relative"
   }
 }));
 
@@ -42,6 +45,12 @@ const Form = () => {
     cardCode: ""
   });
   const [index, setIndex] = useState(1);
+
+  const transitions = useTransition(index, p => p, {
+    from: { opacity: 0, transform: "translate3d(100%,0,0)" },
+    enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
+    leave: { opacity: 0, transform: "translate3d(-50%,0,0)" }
+  });
 
   const nextPage = () => {
     setIndex(index + 1);
@@ -72,14 +81,6 @@ const Form = () => {
     });
   };
 
-  // const pullValues = () => {
-  //   const values = getValues({ nest: true });
-  //   console.log(values);
-  //   setForm(values);
-  // };
-
-  // console.log(errors);
-
   return (
     <Container maxWidth={"sm"}>
       <section className={classes.container}>
@@ -89,29 +90,39 @@ const Form = () => {
           onSubmit={handleSubmit(onSubmit)}
           className={classes.form}
         >
-          {index === 1 && (
-            <FirstStep
-              nextPage={nextPage}
-              form={form}
-              handleChange={handleChange}
-              register={register}
-              setValue={setValue}
-              errors={errors}
-            />
-          )}
-          {index === 2 && (
-            <SecondStep
-              nextPage={nextPage}
-              prevPage={prevPage}
-              handleChange={handleChange}
-              form={form}
-              register={register}
-              setValue={setValue}
-              errors={errors}
-            />
-          )}
-          {index === 3 && <ThirdStep prevPage={prevPage} form={form} />}
-          {index === 4 && <ThanksNote name={form.name} />}
+          {transitions.map(({ item, props, key }) => {
+            return (
+              <animated.div key={key} style={props}>
+                {index === 1 && (
+                  <WrapperForSteps>
+                    <FirstStep
+                      nextPage={nextPage}
+                      form={form}
+                      handleChange={handleChange}
+                      register={register}
+                      setValue={setValue}
+                      errors={errors}
+                    />
+                  </WrapperForSteps>
+                )}
+                {index === 2 && (
+                  <WrapperForSteps>
+                    <SecondStep
+                      nextPage={nextPage}
+                      prevPage={prevPage}
+                      handleChange={handleChange}
+                      form={form}
+                      register={register}
+                      setValue={setValue}
+                      errors={errors}
+                    />
+                  </WrapperForSteps>
+                )}
+                {index === 3 && <ThirdStep prevPage={prevPage} form={form} />}
+                {index === 4 && <ThanksNote name={form.name} />}
+              </animated.div>
+            );
+          })}
         </form>
       </section>
     </Container>

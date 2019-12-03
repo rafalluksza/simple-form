@@ -6,6 +6,7 @@ import { COLOR_SECONDARY, COLOR_TEXT } from "../../Constants/colors";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import WrapperForSteps from "./WrapperForSteps";
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-input {
