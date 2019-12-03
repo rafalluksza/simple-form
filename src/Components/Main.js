@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import background from "../Images/cool-background.png";
-import {COLOR_TEXT} from "../Constants/colors";
+import { COLOR_TEXT } from "../Constants/colors";
 
 const useStyles = makeStyles(() => ({
   background: {
@@ -19,7 +19,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     alignItems: "center",
     fontFamily: "Hind Madurai",
-    color: `rgba(${COLOR_TEXT},1)`
+    color: `rgba(${COLOR_TEXT},1)`,
+    paddingTop: 20,
+    paddingBottom: 20
   },
   container: {
     width: "88%",
@@ -32,18 +34,18 @@ const useStyles = makeStyles(() => ({
 const Main = () => {
   const classes = useStyles();
   return (
-    <Grid container>
-      <div className={classes.background}>
-        <div className={classes.container}>
+    <div className={classes.background}>
+      <div className={classes.container}>
+        <Grid container>
           <Grid item xs={12} md={6}>
             <LeftSide />
           </Grid>
           <Grid item xs={12} md={6}>
             <RightSide />
           </Grid>
-        </div>
+        </Grid>
       </div>
-    </Grid>
+    </div>
   );
 };
 

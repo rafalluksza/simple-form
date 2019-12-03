@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core";
 import { COLOR_SECONDARY, COLOR_TEXT } from "../../Constants/colors";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-input {
@@ -45,15 +46,6 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     width: "328px"
   },
-  btnFirstPage: {
-    alignSelf: "flex-end",
-    marginTop: 30,
-    color: `rgba(${COLOR_TEXT},0.8)`,
-    background: `rgba(${COLOR_SECONDARY},1)`,
-    "&:hover": {
-      background: `rgba(${COLOR_SECONDARY},0.8)`
-    }
-  },
   btnNextPage: {
     color: `rgba(${COLOR_TEXT},0.8)`,
     background: `rgba(${COLOR_SECONDARY},1)`,
@@ -66,14 +58,30 @@ const useStyles = makeStyles(() => ({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 30
+  },
+  error: {
+    margin: 0,
+    color: "#bf1650",
+    "&:before": {
+      display: "inline",
+      content: "'⚠ '"
+    }
   }
 }));
 
-const SecondStep = ({ form, nextPage, prevPage, handleChange, register, setValue }) => {
+const SecondStep = ({
+  form,
+  nextPage,
+  prevPage,
+  handleChange,
+  register,
+  setValue,
+  errors
+}) => {
   const classes = useStyles();
 
   return (
-    <div>
+    <>
       <div className={classes.inputs}>
         <div className={classes.formItem}>
           <RHFInput
@@ -93,6 +101,9 @@ const SecondStep = ({ form, nextPage, prevPage, handleChange, register, setValue
             rules={{ required: true }}
             setValue={setValue}
           />
+          {errors.cardName && (
+            <p className={classes.error}> Card name is required! </p>
+          )}
         </div>
         <div className={classes.formItem}>
           <RHFInput
@@ -115,52 +126,75 @@ const SecondStep = ({ form, nextPage, prevPage, handleChange, register, setValue
               pattern: /[0-9]{13,16}/
             }}
           />
+          {errors.cardNumber && (
+            <p className={classes.error}> Card number is required! </p>
+          )}
         </div>
         <div className={classes.formItem}>
           <div className={classes.selects}>
-            <RHFInput
-              style={{ marginRight: "20px" }}
-              register={register}
-              as={
-                <StyledTextField
+            <Grid container>
+              <Grid item xs={6}>
+                <RHFInput
+                  style={{ marginRight: "20px", width: "100%"  }}
+                  register={register}
+                  as={
+                    <StyledTextField
+                      variant="outlined"
+                      label="Exp month"
+                      type="number"
+                      name="cardMonth"
+                    />
+                  }
                   variant="outlined"
-                  label="Exp month"
-                  type="number"
+                  id="cardMonth"
                   name="cardMonth"
+                  setValue={setValue}
+                  onChange={handleChange}
+                  value={form.cardMonth}
+                  rules={{ required: true, min: 1, max: 12 }}
                 />
-              }
-              variant="outlined"
-              id="cardMonth"
-              name="cardMonth"
-              setValue={setValue}
-              onChange={handleChange}
-              value={form.cardMonth}
-              rules={{ required: true, min: 1, max: 12 }}
-            />
-            <RHFInput
-              register={register}
-              as={
-                <StyledTextField
+                {errors.cardMonth && (
+                  <p className={classes.error}>
+                    {" "}
+                    Card expiration month is required!{" "}
+                  </p>
+                )}
+              </Grid>
+              <Grid item xs={6}>
+                <RHFInput
+                  register={register}
+                  as={
+                    <StyledTextField
+                      variant="outlined"
+                      label="Exp year"
+                      type="number"
+                      name="cardYear"
+                    />
+                  }
                   variant="outlined"
-                  label="Exp year"
-                  type="number"
+                  id="cardYear"
                   name="cardYear"
+                  onChange={handleChange}
+                  value={form.cardYear}
+                  rules={{
+                    required: true,
+                    min: 2019,
+                    max: 2025,
+                    minLength: 4,
+                    maxLength: 4
+                  }}
+                  setValue={setValue}
+                  style={{ width: "100%" }}
                 />
-              }
-              variant="outlined"
-              id="cardYear"
-              name="cardYear"
-              onChange={handleChange}
-              value={form.cardYear}
-              rules={{
-                required: true,
-                min: 2019,
-                max: 2025,
-                minLength: 4,
-                maxLength: 4
-              }}
-              setValue={setValue}
-            />
+
+                {errors.cardYear && (
+                  <p className={classes.error}>
+                    {" "}
+                    Card expiration year is required!{" "}
+                  </p>
+                )}
+              </Grid>
+            </Grid>
           </div>
         </div>
         <div className={classes.formItem}>
@@ -181,7 +215,9 @@ const SecondStep = ({ form, nextPage, prevPage, handleChange, register, setValue
             rules={{ required: true, maxLength: 3, minLength: 3 }}
             setValue={setValue}
           />
-          {/*{errors.cardCode && <div> Only 3 digits! </div>}*/}
+          {errors.cardCode && (
+            <p className={classes.error}> Card code is required! </p>
+          )}
         </div>
       </div>
       <div className={classes.btnSecondPage}>
@@ -198,7 +234,7 @@ const SecondStep = ({ form, nextPage, prevPage, handleChange, register, setValue
           Next Page
         </Button>{" "}
       </div>
-    </div>
+    </>
   );
 };
 

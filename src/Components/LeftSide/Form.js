@@ -18,11 +18,9 @@ const useStyles = makeStyles(() => ({
   },
   form: {
     // border: "1px solid black",
-    width: "70%",
     height: "auto",
     display: "flex",
     justifyContent: "center",
-    alignItems: "flex-start",
     flexDirection: "column",
     marginTop: 20
   }
@@ -80,39 +78,41 @@ const Form = () => {
   //   setForm(values);
   // };
 
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <Container maxWidth={"sm"}>
       <section className={classes.container}>
         <Header index={index} />
-          <form
-            id="signForm"
-            onSubmit={handleSubmit(onSubmit)}
-            className={classes.form}
-          >
-            {index === 1 && (
-              <FirstStep
-                nextPage={nextPage}
-                form={form}
-                handleChange={handleChange}
-                register={register}
-                setValue={setValue}
-              />
-            )}
-            {index === 2 && (
-              <SecondStep
-                nextPage={nextPage}
-                prevPage={prevPage}
-                handleChange={handleChange}
-                form={form}
-                register={register}
-                setValue={setValue}
-              />
-            )}
-            {index === 3 && <ThirdStep prevPage={prevPage} form={form} />}
-            {index === 4 && <ThanksNote name={form.name} />}
-          </form>
+        <form
+          id="signForm"
+          onSubmit={handleSubmit(onSubmit)}
+          className={classes.form}
+        >
+          {index === 1 && (
+            <FirstStep
+              nextPage={nextPage}
+              form={form}
+              handleChange={handleChange}
+              register={register}
+              setValue={setValue}
+              errors={errors}
+            />
+          )}
+          {index === 2 && (
+            <SecondStep
+              nextPage={nextPage}
+              prevPage={prevPage}
+              handleChange={handleChange}
+              form={form}
+              register={register}
+              setValue={setValue}
+              errors={errors}
+            />
+          )}
+          {index === 3 && <ThirdStep prevPage={prevPage} form={form} />}
+          {index === 4 && <ThanksNote name={form.name} />}
+        </form>
       </section>
     </Container>
   );

@@ -34,16 +34,13 @@ const useStyles = makeStyles(() => ({
     marginTop: 30,
     width: "100%"
   },
-  table: {
-    width: "400px",
-    height: "310px"
-  }
+  table: {}
 }));
 
 const ThirdStep = ({ form, prevPage }) => {
   const classes = useStyles();
   return (
-    <div className={classes.inputs}>
+    <div>
       <Table className={classes.table} aria-label="summary table">
         <TableHead>
           <TableRow>
@@ -54,7 +51,7 @@ const ThirdStep = ({ form, prevPage }) => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell size="small" >Full name:</TableCell>
+            <TableCell size="small">Full name:</TableCell>
             <TableCell size="small">{form.name}</TableCell>
           </TableRow>
           <TableRow>

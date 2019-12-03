@@ -4,7 +4,6 @@ import { COLOR_TEXT_LIGHT } from "../../Constants/colors";
 
 const useStyles = makeStyles(() => ({
   header: {
-    width: "70%",
     textAlign: "left",
     paddingTop: 70
   },
@@ -14,12 +13,17 @@ const useStyles = makeStyles(() => ({
     height: 5,
     display: "inline-block"
   },
+  siteData: {
+    fontSize: 16
+  },
   content: {},
   contentTitle: {
-    fontFamily: "Montserrat"
+    fontFamily: "Montserrat",
+    fontSize: 24
   },
   contentSubtitle: {
-    color: `rgba(${COLOR_TEXT_LIGHT})`
+    color: `rgba(${COLOR_TEXT_LIGHT})`,
+    fontSize: 16
   }
 }));
 
@@ -27,7 +31,7 @@ const Header = ({ index }) => {
   const classes = useStyles();
   return (
     <header className={classes.header}>
-      <div>
+      <div className={classes.siteData}>
         <span> {index} </span>
         <div className={classes.line}> </div>
         {index === 1 && <span> Personal Details </span>}
@@ -38,7 +42,9 @@ const Header = ({ index }) => {
 
       <div className={classes.content}>
         <h1 className={classes.contentTitle}>Get started absolutely free</h1>
-        <span className={classes.contentSubtitle}>Free forever.</span>
+        <span className={classes.contentSubtitle}>
+          Free forever, but please pay!
+        </span>
       </div>
     </header>
   );

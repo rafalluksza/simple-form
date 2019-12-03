@@ -50,10 +50,25 @@ const useStyles = makeStyles(() => ({
     "&:hover": {
       background: `rgba(${COLOR_SECONDARY},0.8)`
     }
+  },
+  error: {
+    margin: 0,
+    color: "#bf1650",
+    "&:before": {
+      display: "inline",
+      content: "'⚠ '"
+    }
   }
 }));
 
-const FirstStep = ({ form, nextPage, handleChange, setValue, register }) => {
+const FirstStep = ({
+  form,
+  nextPage,
+  handleChange,
+  setValue,
+  register,
+  errors
+}) => {
   const classes = useStyles();
   return (
     <div className={classes.inputs}>
@@ -74,7 +89,14 @@ const FirstStep = ({ form, nextPage, handleChange, setValue, register }) => {
             value={form.name}
             onChange={handleChange}
             setValue={setValue}
+            rules={{
+              required: true,
+              minLength: 5
+            }}
           />
+          {errors.name && (
+            <p className={classes.error}> Your name is required! </p>
+          )}
         </div>
         <div className={classes.formItem}>
           <RHFInput
@@ -97,6 +119,12 @@ const FirstStep = ({ form, nextPage, handleChange, setValue, register }) => {
             }}
             onChange={handleChange}
           />
+          {errors.email && (
+            <p className={classes.error}>
+              {" "}
+              Your email is less than 5 characters{" "}
+            </p>
+          )}
         </div>
         <div className={classes.formItem}>
           <RHFInput
@@ -116,6 +144,9 @@ const FirstStep = ({ form, nextPage, handleChange, setValue, register }) => {
             rules={{ required: true }}
             onChange={handleChange}
           />
+          {errors.password && (
+            <p className={classes.error}> Your password is required </p>
+          )}
         </div>
         <div className={classes.formItem}>
           <RHFInput
@@ -135,9 +166,15 @@ const FirstStep = ({ form, nextPage, handleChange, setValue, register }) => {
             setValue={setValue}
             rules={{
               required: true,
-              validate: value => value === form.password
+              validate: value => {
+                // console.log(value, form.password);
+                return value === form.password;
+              }
             }}
           />
+          {errors.conPassword && (
+            <p className={classes.error}> Please confirm your password! </p>
+          )}
         </div>
       </FormControl>
       <Button
