@@ -24,9 +24,8 @@ const useStyles = makeStyles(() => ({
     paddingBottom: 20
   },
   container: {
-    width: "88%",
-    height: "80%",
-    backgroundColor: "white",
+    width: "80%",
+    minHeight: "80%",
     display: "flex"
   }
 }));

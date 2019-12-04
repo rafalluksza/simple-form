@@ -3,7 +3,6 @@ import { useTransition, animated } from "react-spring";
 import useForm from "react-hook-form";
 
 import { makeStyles } from "@material-ui/core";
-import Container from "@material-ui/core/Container";
 import Header from "./Header";
 import FirstStep from "./FirstStep";
 import SecondStep from "./SecondStep";
@@ -82,7 +81,6 @@ const Form = () => {
   };
 
   return (
-    <Container maxWidth={"sm"}>
       <section className={classes.container}>
         <Header index={index} />
         <form
@@ -121,7 +119,6 @@ const Form = () => {
             })}
         </form>
       </section>
-    </Container>
   );
 };
 
