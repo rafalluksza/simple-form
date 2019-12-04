@@ -9,7 +9,6 @@ import FirstStep from "./FirstStep";
 import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
 import ThanksNote from "./ThanksNote";
-import WrapperForSteps from "./WrapperForSteps";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -20,7 +19,8 @@ const useStyles = makeStyles(() => ({
   },
   form: {
     // border: "1px solid black",
-    height: "auto",
+    height: "100%",
+    width: 322,
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
@@ -90,11 +90,10 @@ const Form = () => {
           onSubmit={handleSubmit(onSubmit)}
           className={classes.form}
         >
-          {transitions.map(({ item, props, key }) => {
-            return (
-              <animated.div key={key} style={props}>
-                {index === 1 && (
-                  <WrapperForSteps>
+            {transitions.map(({ item, props, key }) => {
+              return (
+                <animated.div key={key} style={props}>
+                  {item === 1 && (
                     <FirstStep
                       nextPage={nextPage}
                       form={form}
@@ -103,10 +102,8 @@ const Form = () => {
                       setValue={setValue}
                       errors={errors}
                     />
-                  </WrapperForSteps>
-                )}
-                {index === 2 && (
-                  <WrapperForSteps>
+                  )}
+                  {item === 2 && (
                     <SecondStep
                       nextPage={nextPage}
                       prevPage={prevPage}
@@ -116,13 +113,12 @@ const Form = () => {
                       setValue={setValue}
                       errors={errors}
                     />
-                  </WrapperForSteps>
-                )}
-                {index === 3 && <ThirdStep prevPage={prevPage} form={form} />}
-                {index === 4 && <ThanksNote name={form.name} />}
-              </animated.div>
-            );
-          })}
+                  )}
+                  {item === 3 && <ThirdStep prevPage={prevPage} form={form} />}
+                  {item === 4 && <ThanksNote name={form.name} />}
+                </animated.div>
+              );
+            })}
         </form>
       </section>
     </Container>

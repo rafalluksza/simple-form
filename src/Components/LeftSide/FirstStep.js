@@ -36,7 +36,8 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
+    width: "100%"
   },
   formItem: {
     // border: "1px solid black",
@@ -72,7 +73,7 @@ const FirstStep = ({
 }) => {
   const classes = useStyles();
   return (
-    <>
+    <WrapperForSteps>
       <div className={classes.inputs}>
         <FormControl>
           <div className={classes.formItem}>
@@ -189,7 +190,7 @@ const FirstStep = ({
           Next Page
         </Button>
       </div>
-    </>
+    </WrapperForSteps>
   );
 };
 

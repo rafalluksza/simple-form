@@ -36,7 +36,8 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
+    width: "100%"
   },
   formItem: {
     // border: "1px solid black",
@@ -82,7 +83,7 @@ const SecondStep = ({
   const classes = useStyles();
 
   return (
-    <>
+    <WrapperForSteps>
       <div className={classes.inputs}>
         <div className={classes.formItem}>
           <RHFInput
@@ -136,7 +137,7 @@ const SecondStep = ({
             <Grid container>
               <Grid item xs={6}>
                 <RHFInput
-                  style={{ marginRight: "20px", width: "100%"  }}
+                  style={{ marginRight: "20px", width: "100%" }}
                   register={register}
                   as={
                     <StyledTextField
@@ -235,7 +236,7 @@ const SecondStep = ({
           Next Page
         </Button>{" "}
       </div>
-    </>
+    </WrapperForSteps>
   );
 };
 

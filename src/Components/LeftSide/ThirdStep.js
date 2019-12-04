@@ -7,6 +7,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
+import WrapperForSteps from "./WrapperForSteps";
 
 const useStyles = makeStyles(() => ({
   inputs: {
@@ -40,7 +41,7 @@ const useStyles = makeStyles(() => ({
 const ThirdStep = ({ form, prevPage }) => {
   const classes = useStyles();
   return (
-    <div>
+    <WrapperForSteps>
       <Table className={classes.table} aria-label="summary table">
         <TableHead>
           <TableRow>
@@ -91,7 +92,7 @@ const ThirdStep = ({ form, prevPage }) => {
           Send
         </Button>{" "}
       </div>
-    </div>
+    </WrapperForSteps>
   );
 };
 
