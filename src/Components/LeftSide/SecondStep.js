@@ -12,6 +12,9 @@ const StyledTextField = styled(TextField)`
   .MuiInputBase-input {
     width: 300px;
   }
+  @media (max-width: 480px) {
+    width: 195px;
+  }
   label.focused {
     color: rgba(255, 146, 10, 1);
   }
@@ -46,20 +49,30 @@ const useStyles = makeStyles(() => ({
   },
   selects: {
     display: "flex",
-    width: "328px"
+    width: "328px",
+    "@media(max-width: 480px)": {
+      width: "195px",
+    }
   },
   btnNextPage: {
     color: `rgba(${COLOR_TEXT},0.8)`,
     background: `rgba(${COLOR_SECONDARY},1)`,
     "&:hover": {
       background: `rgba(${COLOR_SECONDARY},0.8)`
+    },
+    "@media(max-width: 480px)": {
+      marginTop: 10
     }
   },
   btnSecondPage: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 30
+    marginTop: 30,
+    "@media(max-width: 480px)": {
+      flexDirection: "column",
+      marginTop: 0
+    }
   },
   error: {
     margin: 0,
@@ -134,8 +147,8 @@ const SecondStep = ({
         </div>
         <div className={classes.formItem}>
           <div className={classes.selects}>
-            <Grid container>
-              <Grid item xs={6}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
                 <RHFInput
                   style={{ marginRight: "20px", width: "100%" }}
                   register={register}
@@ -162,7 +175,7 @@ const SecondStep = ({
                   </p>
                 )}
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} md={6}>
                 <RHFInput
                   register={register}
                   as={

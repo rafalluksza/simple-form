@@ -1,5 +1,4 @@
 import React from "react";
-import FormControl from "@material-ui/core/FormControl";
 import { RHFInput } from "react-hook-form-input";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core";
@@ -11,6 +10,9 @@ import WrapperForSteps from "./WrapperForSteps";
 const StyledTextField = styled(TextField)`
   .MuiInputBase-input {
     width: 300px;
+  }
+  @media(max-width: 480px) {
+    width: 195px;
   }
   label.focused {
     color: rgba(255, 146, 10, 1);
@@ -51,6 +53,9 @@ const useStyles = makeStyles(() => ({
     background: `rgba(${COLOR_SECONDARY},1)`,
     "&:hover": {
       background: `rgba(${COLOR_SECONDARY},0.8)`
+    },
+    "@media(max-width: 480px)": {
+      alignSelf: "center"
     }
   },
   error: {

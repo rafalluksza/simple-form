@@ -81,44 +81,44 @@ const Form = () => {
   };
 
   return (
-      <section className={classes.container}>
-        <Header index={index} />
+    <section className={classes.container}>
+      <Header index={index} />
         <form
           id="signForm"
           onSubmit={handleSubmit(onSubmit)}
           className={classes.form}
         >
-            {transitions.map(({ item, props, key }) => {
-              return (
-                <animated.div key={key} style={props}>
-                  {item === 1 && (
-                    <FirstStep
-                      nextPage={nextPage}
-                      form={form}
-                      handleChange={handleChange}
-                      register={register}
-                      setValue={setValue}
-                      errors={errors}
-                    />
-                  )}
-                  {item === 2 && (
-                    <SecondStep
-                      nextPage={nextPage}
-                      prevPage={prevPage}
-                      handleChange={handleChange}
-                      form={form}
-                      register={register}
-                      setValue={setValue}
-                      errors={errors}
-                    />
-                  )}
-                  {item === 3 && <ThirdStep prevPage={prevPage} form={form} />}
-                  {item === 4 && <ThanksNote name={form.name} />}
-                </animated.div>
-              );
-            })}
+          {transitions.map(({ item, props, key }) => {
+            return (
+              <animated.div key={key} style={props}>
+                {item === 1 && (
+                  <FirstStep
+                    nextPage={nextPage}
+                    form={form}
+                    handleChange={handleChange}
+                    register={register}
+                    setValue={setValue}
+                    errors={errors}
+                  />
+                )}
+                {item === 2 && (
+                  <SecondStep
+                    nextPage={nextPage}
+                    prevPage={prevPage}
+                    handleChange={handleChange}
+                    form={form}
+                    register={register}
+                    setValue={setValue}
+                    errors={errors}
+                  />
+                )}
+                {item === 3 && <ThirdStep prevPage={prevPage} form={form} />}
+                {item === 4 && <ThanksNote name={form.name} />}
+              </animated.div>
+            );
+          })}
         </form>
-      </section>
+    </section>
   );
 };
 
