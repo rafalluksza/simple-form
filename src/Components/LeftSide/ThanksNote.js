@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 import Logo from "../RightSide/Logo";
+import WrapperForSteps from "./WrapperForSteps";
 
 const useStyles = makeStyles(() => ({
   inputs: {
@@ -12,17 +13,19 @@ const useStyles = makeStyles(() => ({
     marginTop: 20
   },
   par: {
-    fontSize: 24,
+    fontSize: 24
   }
 }));
 
 const ThanksNote = ({ name }) => {
   const classes = useStyles();
   return (
-    <div className={classes.inputs}>
-      <Logo />
-      <p className={classes.par}>Thanks {name} for registering!</p>
-    </div>
+    <WrapperForSteps>
+      <div className={classes.inputs}>
+        <Logo />
+        <p className={classes.par}>Thanks {name} for registering!</p>
+      </div>
+    </WrapperForSteps>
   );
 };
 

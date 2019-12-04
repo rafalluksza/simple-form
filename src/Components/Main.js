@@ -24,9 +24,8 @@ const useStyles = makeStyles(() => ({
     paddingBottom: 20
   },
   container: {
-    width: "88%",
-    height: "80%",
-    backgroundColor: "white",
+    width: "80%",
+    minHeight: "80%",
     display: "flex"
   }
 }));
@@ -34,18 +33,20 @@ const useStyles = makeStyles(() => ({
 const Main = () => {
   const classes = useStyles();
   return (
-    <div className={classes.background}>
-      <div className={classes.container}>
-        <Grid container>
-          <Grid item xs={12} md={6}>
-            <LeftSide />
+    <>
+      <div className={classes.background}>
+        <div className={classes.container}>
+          <Grid container>
+            <Grid item xs={12} md={6}>
+              <LeftSide />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <RightSide />
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <RightSide />
-          </Grid>
-        </Grid>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

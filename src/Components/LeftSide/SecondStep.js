@@ -6,10 +6,14 @@ import { COLOR_SECONDARY, COLOR_TEXT } from "../../Constants/colors";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import WrapperForSteps from "./WrapperForSteps";
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-input {
     width: 300px;
+  }
+  @media (max-width: 480px) {
+    width: 195px;
   }
   label.focused {
     color: rgba(255, 146, 10, 1);
@@ -35,7 +39,8 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
+    width: "100%"
   },
   formItem: {
     // border: "1px solid black",
@@ -44,20 +49,30 @@ const useStyles = makeStyles(() => ({
   },
   selects: {
     display: "flex",
-    width: "328px"
+    width: "328px",
+    "@media(max-width: 480px)": {
+      width: "195px",
+    }
   },
   btnNextPage: {
     color: `rgba(${COLOR_TEXT},0.8)`,
     background: `rgba(${COLOR_SECONDARY},1)`,
     "&:hover": {
       background: `rgba(${COLOR_SECONDARY},0.8)`
+    },
+    "@media(max-width: 480px)": {
+      marginTop: 10
     }
   },
   btnSecondPage: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 30
+    marginTop: 30,
+    "@media(max-width: 480px)": {
+      flexDirection: "column",
+      marginTop: 0
+    }
   },
   error: {
     margin: 0,
@@ -81,7 +96,7 @@ const SecondStep = ({
   const classes = useStyles();
 
   return (
-    <>
+    <WrapperForSteps>
       <div className={classes.inputs}>
         <div className={classes.formItem}>
           <RHFInput
@@ -132,10 +147,10 @@ const SecondStep = ({
         </div>
         <div className={classes.formItem}>
           <div className={classes.selects}>
-            <Grid container>
-              <Grid item xs={6}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
                 <RHFInput
-                  style={{ marginRight: "20px", width: "100%"  }}
+                  style={{ marginRight: "20px", width: "100%" }}
                   register={register}
                   as={
                     <StyledTextField
@@ -160,7 +175,7 @@ const SecondStep = ({
                   </p>
                 )}
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} md={6}>
                 <RHFInput
                   register={register}
                   as={
@@ -234,7 +249,7 @@ const SecondStep = ({
           Next Page
         </Button>{" "}
       </div>
-    </>
+    </WrapperForSteps>
   );
 };
 

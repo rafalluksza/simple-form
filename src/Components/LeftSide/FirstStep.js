@@ -1,15 +1,18 @@
 import React from "react";
-import FormControl from "@material-ui/core/FormControl";
 import { RHFInput } from "react-hook-form-input";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core";
 import { COLOR_SECONDARY, COLOR_TEXT } from "../../Constants/colors";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
+import WrapperForSteps from "./WrapperForSteps";
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-input {
     width: 300px;
+  }
+  @media(max-width: 480px) {
+    width: 195px;
   }
   label.focused {
     color: rgba(255, 146, 10, 1);
@@ -35,7 +38,8 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
+    width: "100%"
   },
   formItem: {
     // border: "1px solid black",
@@ -49,6 +53,9 @@ const useStyles = makeStyles(() => ({
     background: `rgba(${COLOR_SECONDARY},1)`,
     "&:hover": {
       background: `rgba(${COLOR_SECONDARY},0.8)`
+    },
+    "@media(max-width: 480px)": {
+      alignSelf: "center"
     }
   },
   error: {
@@ -71,8 +78,8 @@ const FirstStep = ({
 }) => {
   const classes = useStyles();
   return (
-    <div className={classes.inputs}>
-      <FormControl>
+    <WrapperForSteps>
+      <div className={classes.inputs}>
         <div className={classes.formItem}>
           <RHFInput
             register={register}
@@ -176,17 +183,17 @@ const FirstStep = ({
             <p className={classes.error}> Please confirm your password! </p>
           )}
         </div>
-      </FormControl>
-      <Button
-        className={classes.btnFirstPage}
-        onClick={() => {
-          nextPage();
-        }}
-        variant="contained"
-      >
-        Next Page
-      </Button>
-    </div>
+        <Button
+          className={classes.btnFirstPage}
+          onClick={() => {
+            nextPage();
+          }}
+          variant="contained"
+        >
+          Next Page
+        </Button>
+      </div>
+    </WrapperForSteps>
   );
 };
 

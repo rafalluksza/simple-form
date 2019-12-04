@@ -29,16 +29,27 @@ const useStyles = makeStyles(() => ({
 
 const Header = ({ index }) => {
   const classes = useStyles();
+
+  // const transitions = useTransition(index, p => p, {
+  //   from: { opacity: 0, transform: "translate3d(100%,0,0)" },
+  //   enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
+  //   leave: { opacity: 0, transform: "translate3d(-25%,0,0)" }
+  // });
+
   return (
     <header className={classes.header}>
-      <div className={classes.siteData}>
-        <span> {index} </span>
-        <div className={classes.line}> </div>
-        {index === 1 && <span> Personal Details </span>}
-        {index === 2 && <span> Credit Card Data </span>}
-        {index === 3 && <span> Summary </span>}
-        {index === 4 && <span> Thank you! </span>}
-      </div>
+      {/*{transitions.map(({ item, props, key }) => {*/}
+      {/*  return (*/}
+            <div className={classes.siteData}>
+              <span> {index} </span>
+              <div className={classes.line}> </div>
+              {index === 1 && <span> Personal Details </span>}
+              {index === 2 && <span> Credit Card Data </span>}
+              {index === 3 && <span> Summary </span>}
+              {index === 4 && <span> Thank you! </span>}
+            </div>
+      {/*  );*/}
+      {/*})}*/}
 
       <div className={classes.content}>
         <h1 className={classes.contentTitle}>Get started absolutely free</h1>
