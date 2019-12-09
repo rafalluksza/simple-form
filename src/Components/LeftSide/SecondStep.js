@@ -7,6 +7,8 @@ import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import WrapperForSteps from "./WrapperForSteps";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-input {
@@ -237,7 +239,7 @@ const SecondStep = ({
       </div>
       <div className={classes.btnSecondPage}>
         <Button onClick={prevPage} variant="outlined">
-          Previous Page
+          <NavigateBeforeIcon/> Previous Page
         </Button>
         <Button
           onClick={() => {
@@ -246,7 +248,7 @@ const SecondStep = ({
           variant="contained"
           className={classes.btnNextPage}
         >
-          Next Page
+          Next Page <NavigateNextIcon />
         </Button>{" "}
       </div>
     </WrapperForSteps>
