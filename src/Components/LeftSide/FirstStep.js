@@ -6,12 +6,14 @@ import { COLOR_SECONDARY, COLOR_TEXT } from "../../Constants/colors";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import WrapperForSteps from "./WrapperForSteps";
+import SMButtons from "./SMButtons";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-input {
     width: 300px;
   }
-  @media(max-width: 480px) {
+  @media (max-width: 480px) {
     width: 195px;
   }
   label.focused {
@@ -47,7 +49,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: 10
   },
   btnFirstPage: {
-    alignSelf: "flex-end",
+    alignSelf: "center",
     marginTop: 30,
     color: `rgba(${COLOR_TEXT},0.8)`,
     background: `rgba(${COLOR_SECONDARY},1)`,
@@ -190,8 +192,9 @@ const FirstStep = ({
           }}
           variant="contained"
         >
-          Next Page
+          Next Page <NavigateNextIcon />
         </Button>
+        <SMButtons />
       </div>
     </WrapperForSteps>
   );

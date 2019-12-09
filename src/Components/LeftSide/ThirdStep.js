@@ -8,6 +8,8 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import WrapperForSteps from "./WrapperForSteps";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 
 const useStyles = makeStyles(() => ({
   inputs: {
@@ -22,6 +24,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: 10
   },
   btnNextPage: {
+    width: 130,
     color: `rgba(${COLOR_TEXT},0.8)`,
     background: `rgba(${COLOR_SECONDARY},1)`,
     "&:hover": {
@@ -81,7 +84,7 @@ const ThirdStep = ({ form, prevPage }) => {
       </Table>
       <div className={classes.btnThirdPage}>
         <Button onClick={prevPage} variant="outlined">
-          Previous Page
+          <NavigateBeforeIcon/> Previous Page
         </Button>
         <Button
           form="signForm"
@@ -89,7 +92,7 @@ const ThirdStep = ({ form, prevPage }) => {
           variant="contained"
           className={classes.btnNextPage}
         >
-          Send
+          Send <NavigateNextIcon />
         </Button>{" "}
       </div>
     </WrapperForSteps>
