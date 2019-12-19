@@ -38,10 +38,24 @@ const useStyles = makeStyles(() => ({
     marginTop: 30,
     width: "100%"
   },
-  table: {}
+  table: {},
+  errors: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    border: "1px solid #bf1650",
+    backgroundColor: "#bf1650",
+    color: `#fff`,
+    fontSize: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 5
+  }
 }));
 
-const ThirdStep = ({ form, prevPage }) => {
+const ThirdStep = ({ form, prevPage, errors }) => {
+  console.log(errors, errors.length);
   const classes = useStyles();
   return (
     <WrapperForSteps>
@@ -82,9 +96,20 @@ const ThirdStep = ({ form, prevPage }) => {
           </TableRow>
         </TableBody>
       </Table>
+      {(errors.name ||
+        errors.email ||
+        errors.password ||
+        errors.conPassword ||
+        errors.cardName ||
+        errors.cardNumber ||
+        errors.cardMonth ||
+        errors.cardYear ||
+        errors.cardCode) && (
+        <div className={classes.errors}> Please fill the form correctly! </div>
+      )}
       <div className={classes.btnThirdPage}>
         <Button onClick={prevPage} variant="outlined">
-          <NavigateBeforeIcon/> Previous Page
+          <NavigateBeforeIcon /> Previous Page
         </Button>
         <Button
           form="signForm"
