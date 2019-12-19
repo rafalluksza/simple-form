@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#F9F4F5",
     height: "100%",
     width: "100%",
-    minHeight: "750px",
+    minHeight: "790px",
     paddingBottom: "40px",
     "@media(max-width: 960px)": {
       minHeight: 800

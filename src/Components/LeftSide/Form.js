@@ -30,7 +30,9 @@ const useStyles = makeStyles(() => ({
 
 const Form = () => {
   const classes = useStyles();
-  const { handleSubmit, errors, register, setValue } = useForm();
+  const { handleSubmit, errors, register, setValue } = useForm({
+    mode: "onSubmit",
+  });
 
   const [form, setForm] = useState({
     name: "",
@@ -46,9 +48,9 @@ const Form = () => {
   const [index, setIndex] = useState(1);
 
   const transitions = useTransition(index, p => p, {
-    from: { opacity: 0, transform: "translate3d(100%,0,0)" },
+    from: { opacity: 0, transform: "translate3d(50%,0,0)" },
     enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
-    leave: { opacity: 0, transform: "translate3d(-50%,0,0)" }
+    leave: { opacity: 0, transform: "translate3d(-25%,0,0)" }
   });
 
   const nextPage = () => {
@@ -112,7 +114,7 @@ const Form = () => {
                     errors={errors}
                   />
                 )}
-                {item === 3 && <ThirdStep prevPage={prevPage} form={form} />}
+                {item === 3 && <ThirdStep prevPage={prevPage} form={form} errors={errors}/>}
                 {item === 4 && <ThanksNote name={form.name} />}
               </animated.div>
             );

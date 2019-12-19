@@ -79,6 +79,7 @@ const FirstStep = ({
   errors
 }) => {
   const classes = useStyles();
+
   return (
     <WrapperForSteps>
       <div className={classes.inputs}>
